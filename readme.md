@@ -56,3 +56,12 @@
 #### Type Annotation :
 
 - Explicitly specifying type of a variables/functions : `num1: number`
+
+#### Type inference :
+
+- Ability of TS compiler to automatically determine and assign type to variable,function return and expression based on their context
+
+```ts
+let name = 'John';
+name = 10; // Error : Type 'number' is not assignable to type 'string'
+```
