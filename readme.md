@@ -15,10 +15,16 @@
 - TS supports static typing.
 
 ## TS configuration file :
+
 `tsc --init`
+
+## Data Types in TS :
+
+![Alt text](images/dataTypes.png)
+- number : integer,floating
 
 ## Terminologies:
 
 #### Type Annotation :
 
-- num1: number
+- Explicitly specifying type of a variables/functions : `num1: number`

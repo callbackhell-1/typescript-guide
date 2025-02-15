@@ -13,3 +13,5 @@ function sum(num1: number, num2: number): number {
 
 let result: number = sum(5, 5);
 console.log(result);
+
+let nanValue: number = NaN; //NaN is number, so it is valid
