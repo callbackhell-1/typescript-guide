@@ -1,14 +1,24 @@
-# Typescript : 
-### Language that uses TS : 
+# Typescript :
+
+### Language that uses TS :
+
 - Angular
 - Vue
 - NextJs
 
-## Intro to TS : 
+## Intro to TS :
+
 - TS is superset of JS.
 - All valid JS code is TS code.
 - TS catches error at compile time instead of runtime unlike JS.
 - Browser can't understand TS, so we need to convert our TS code to JS code.
 - TS supports static typing.
 
+## TS configuration file :
+`tsc --init`
 
+## Terminologies:
+
+#### Type Annotation :
+
+- num1: number
