@@ -49,7 +49,7 @@
 ### Difference Between any and unknown in TypeScript
 
 ![Alt text](images/any_unknown.png)
-[Click here from Example Explanation](./any_unknown.ts)
+[Click here from Example Explanation](./src/4-any_unknown.ts)
 
 ## Terminologies:
 
@@ -65,3 +65,7 @@
 let name = 'John';
 name = 10; // Error : Type 'number' is not assignable to type 'string'
 ```
+
+### Iteration Method in Array :
+
+[Difference Between `forEach`, `for` Loop & `for...of`](./src/9-different-for-loop.md)
