@@ -69,3 +69,7 @@ name = 10; // Error : Type 'number' is not assignable to type 'string'
 ### Iteration Method in Array :
 
 [Difference Between `forEach`, `for` Loop & `for...of`](./src/9-different-for-loop.md)
+
+### Map, Filter and Reduce.
+[Difference Between `map()`, `filter()`, and `reduce()` in TypeScript](./src/10-map-filter-reduce.md)
+
