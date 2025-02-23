@@ -74,6 +74,11 @@ name = 10; // Error : Type 'number' is not assignable to type 'string'
 
 [Difference Between `map()`, `filter()`, and `reduce()` in TypeScript](./src/10-map-filter-reduce.md)
 
+### type alias
 
-### type alias 
 - Instead of defining type for each object , we can create a type and assign tit to all the object, also it contains optional property.
+
+### call signature
+
+- Declaration/defination of a function, which includes func name, parameter and return type.
+- Defines the str and type info of the function.
