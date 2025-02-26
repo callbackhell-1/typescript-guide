@@ -82,3 +82,16 @@ name = 10; // Error : Type 'number' is not assignable to type 'string'
 
 - Declaration/defination of a function, which includes func name, parameter and return type.
 - Defines the str and type info of the function.
+
+### enums
+
+- set of related values & choose one value from multiple options.
+- Enums make it easier to work with a group of related values by giving them meaningful names instead of using plain numbers or strings.
+
+#### When to Use Enums
+
+- When you have a fixed set of related constants (e.g., days of the week, status codes, directions).
+- When you want to improve code readability by using meaningful names instead of magic numbers or strings.
+- You have a fixed list of options
+- You want to avoid typos/magic values
+- You need autocomplete and type safety
