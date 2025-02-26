@@ -95,3 +95,110 @@ name = 10; // Error : Type 'number' is not assignable to type 'string'
 - You have a fixed list of options
 - You want to avoid typos/magic values
 - You need autocomplete and type safety
+
+### Tuple
+
+- A tuple is a special data structure in TypeScript that allows you to store a fixed-size collection of elements, where each element can have a different type.
+- Think of it as an array, but with strict rules about the types and order of its elements.
+
+#### Tuple vs Array
+
+- Array: All elements have the same type.
+
+```ts
+let numbers: number[] = [1, 2, 3];
+```
+
+- Tuple: Elements can have different types, and the order matters.
+
+```ts
+let person: [string, number] = ['Alice', 30];
+```
+
+#### Syntax
+
+```ts
+let tupleName: [type1, type2, type3, ...] = [value1, value2, value3, ...];
+```
+
+#### Key Features of Tuples
+
+1. Fixed Length
+
+- Tuples have a fixed number of elements. Adding or removing elements will cause a TypeScript error.
+
+```ts
+let point: [number, number] = [10, 20];
+point.push(30); // Error: Tuple has a fixed length
+```
+
+2. Type Order Matters
+
+- The order of types in a tuple is strict. Swapping values will cause an error.
+
+```ts
+let data: [string, number] = ['Alice', 30];
+data = [30, 'Alice']; // Error: Type 'number' is not assignable to type 'string'
+```
+
+3. Optional Elements
+
+- You can make some elements optional using `?`.
+
+```ts
+let optionalTuple: [string, number?] = ['Alice'];
+```
+
+- optionalTuple[0] is "Alice".
+
+- optionalTuple[1] is undefined (optional)
+
+4. Rest Elements
+
+- You can use the rest operator (`...`) to allow additional elements of a specific type.
+
+```ts
+let rgb: [number, number, number, ...number[]] = [255, 0, 0, 128, 64];
+```
+
+- The first 3 elements are fixed (255, 0, 0)
+- The rest are optional numbers (128, 64)
+
+#### When to Use Tuples
+
+- Fixed-Size Data: When you know exactly how many elements you need and their types.
+  - Example: Coordinates ([x, y]), RGB colors ([r, g, b]).
+- Returning Multiple Values: When a function needs to return more than one value.
+- Strict Typing: When you want to enforce the types and order of elements.
+
+#### When NOT to Use Tuples
+
+- Dynamic Data: If the number of elements or their types can change, use an array or object instead.
+
+- Complex Data: For deeply nested or complex structures, prefer objects or classes.
+
+### Example: Tuple vs Object
+
+#### Tuple
+
+```ts
+let user: [string, number] = ['Alice', 30];
+console.log(user[0]); // "Alice"
+console.log(user[1]); // 30
+```
+
+#### Object
+
+```ts
+let user = { name: 'Alice', age: 30 };
+console.log(user.name); // "Alice"
+console.log(user.age); // 30
+```
+
+### Key Takeaways
+
+- Tuples are fixed-size arrays with strictly typed elements.
+
+- Use tuples when you need to enforce the order and type of elements.
+
+- Avoid tuples for dynamic or complex data (use objects or arrays instead).
