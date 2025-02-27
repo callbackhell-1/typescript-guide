@@ -31,7 +31,7 @@ tsc --init
 - `number`: Integer, floating-point numbers.
 - `boolean`: `true` or `false`.
 - `string`: Text values.
-- `bigint`: Used for very large numbers (beyond `9007199254740991`). Append `n` to declare a `bigint` value.
+- `bigint`: Used for very large numbers (beyond `9007199254740991`). JavaScript may lose precision for numbers beyond this range, and `bigint` ensures accurate large-number calculations.
 - `any`: Disables type checking, making code feel like JS.
 - `unknown`: Safer than `any`, enforcing type checking.
 
@@ -113,6 +113,18 @@ let orderStatus: Status = Status.Shipped;
 - To improve code readability by using meaningful names instead of magic numbers/strings.
 - When autocomplete and type safety are required.
 
+### `const enum` for Optimization
+
+To avoid unnecessary JavaScript output, prefer `const enum` when possible:
+
+```ts
+const enum Status {
+  Pending,
+  Shipped,
+  Delivered
+}
+```
+
 ## Tuples
 
 A tuple is a fixed-size collection of elements where each element can have a different type:
@@ -137,11 +149,11 @@ let data: [string, number] = ['Alice', 30];
 
 ### Key Features of Tuples
 
-1. **Fixed Length**
+1. **Fixed Length (but `push()` is allowed)**
 
    ```ts
    let point: [number, number] = [10, 20];
-   point.push(30); // Error: Tuple has a fixed length
+   point.push(30); // Allowed, but accessing point[2] will cause an error
    ```
 
 2. **Type Order Matters**
@@ -187,6 +199,14 @@ console.log(user.name); // "Alice"
 console.log(user.age); // 30
 ```
 
+### Tuple Behavior in TypeScript vs JavaScript
+
+| Action               | TypeScript Compile-Time | JavaScript Runtime |
+|----------------------|-----------------------|---------------------|
+| `push()`            | ✅ Allowed (no error)  | ✅ Works            |
+| Access `[2]`        | ❌ Error               | ✅ Works            |
+| Declare `[number, number]` | ✅ Fixed-length type | ❌ Dynamic array |
+
 ## Union Types (`|`)
 
 A union type allows a variable to hold multiple types:
@@ -211,4 +231,14 @@ type User = { name: string };
 let person: Employee & User = { id: 1, name: 'Alice' };
 ```
 
+### Important Note on Intersection Types
 
+Intersection types **merge properties**, meaning all properties from both types must be present.
+
+```ts
+// Valid
+let person: Employee & User = { id: 1, name: "Alice" };
+
+// Error: Property 'name' is missing
+let employee: Employee & User = { id: 1 }; // ❌ TypeScript error
+```
