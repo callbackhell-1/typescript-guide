@@ -1,185 +1,177 @@
-# Typescript :
+# TypeScript
 
-### Language that uses TS :
+## Languages that Use TypeScript
 
 - Angular
 - Vue
-- NextJs
+- Next.js
 
-## Intro to TS :
+## Introduction to TypeScript
 
-- TS is superset of JS.
-- All valid JS code is TS code.
-- TS catches error at compile time instead of runtime unlike JS.
-- Browser can't understand TS, so we need to convert our TS code to JS code.
+- TypeScript (TS) is a superset of JavaScript (JS).
+- All valid JS code is also valid TS code.
+- TS catches errors at compile time instead of runtime (unlike JS).
+- Browsers can't understand TS, so we need to compile it into JS.
 - TS supports static typing.
 
-## TS configuration file :
+## TS Configuration File
 
-`tsc --init`
+Initialize a TypeScript configuration file with:
 
-## Data Types in TS :
+```sh
+tsc --init
+```
 
-![Alt text](images/dataTypes.png)
+## Data Types in TypeScript
 
-- number : integer,floating
-- boolean
-- string
-- bigint
-  - Number type can have max of 9007199254740991 , beyond this we have to use bigInt
-  - add `n` in the last
-  - bigInt
-- any
+![Data Types](images/dataTypes.png)
 
-  - most flexible type.
-  - turn off all type checking for variable & expression.
-  - Helpful in case of API call data, where we don't know the type of the data.
-  - Code will feel like writing in JS.
+### Primitive Data Types
 
-  ```ts
-  let myName: any = 'John Doe';
-  myName = 12;
-  myName = false;
-  ```
+- `number`: Integer, floating-point numbers.
+- `boolean`: `true` or `false`.
+- `string`: Text values.
+- `bigint`: Used for very large numbers (beyond `9007199254740991`). Append `n` to declare a `bigint` value.
+- `any`: Disables type checking, making code feel like JS.
+- `unknown`: Safer than `any`, enforcing type checking.
 
-- unknown
-  - safer than `any` because it enforces the type checking & type safety
-  - variable of type unknown can hold value of any type.
+```ts
+let myName: any = 'John Doe';
+myName = 12;
+myName = false;
+```
 
-### Difference Between any and unknown in TypeScript
+### Difference Between `any` and `unknown`
 
-![Alt text](images/any_unknown.png)
-[Click here from Example Explanation](./src/4-any_unknown.ts)
+![Comparison](images/any_unknown.png)
+[Example Explanation](./src/4-any_unknown.ts)
 
-## Terminologies:
+## TypeScript Terminologies
 
-#### Type Annotation :
+### Type Annotation
 
-- Explicitly specifying type of a variables/functions : `num1: number`
+Explicitly specifying the type of variables/functions:
 
-#### Type inference :
+```ts
+let num1: number;
+```
 
-- Ability of TS compiler to automatically determine and assign type to variable,function return and expression based on their context
+### Type Inference
+
+TypeScript automatically determines the type based on the assigned value:
 
 ```ts
 let name = 'John';
-name = 10; // Error : Type 'number' is not assignable to type 'string'
+name = 10; // Error: Type 'number' is not assignable to type 'string'
 ```
 
-### Iteration Method in Array :
+## Iteration Methods in Arrays
 
-[Difference Between `forEach`, `for` Loop & `for...of`](./src/9-different-for-loop.md)
+[Comparison of `forEach`, `for` Loop & `for...of`](./src/9-different-for-loop.md)
 
-### Map, Filter and Reduce
+## Map, Filter, and Reduce
 
-[Difference Between `map()`, `filter()`, and `reduce()` in TypeScript](./src/10-map-filter-reduce.md)
+[Comparison of `map()`, `filter()`, and `reduce()`](./src/10-map-filter-reduce.md)
 
-### type alias
+## Type Alias
 
-- Instead of defining type for each object , we can create a type and assign tit to all the object, also it contains optional property.
-
-### call signature
-
-- Declaration/defination of a function, which includes func name, parameter and return type.
-- Defines the str and type info of the function.
-
-### enums
-
-- set of related values & choose one value from multiple options.
-- Enums make it easier to work with a group of related values by giving them meaningful names instead of using plain numbers or strings.
-
-#### When to Use Enums
-
-- When you have a fixed set of related constants (e.g., days of the week, status codes, directions).
-- When you want to improve code readability by using meaningful names instead of magic numbers or strings.
-- You have a fixed list of options
-- You want to avoid typos/magic values
-- You need autocomplete and type safety
-
-### Tuple
-
-- A tuple is a special data structure in TypeScript that allows you to store a fixed-size collection of elements, where each element can have a different type.
-- Think of it as an array, but with strict rules about the types and order of its elements.
-
-#### Tuple vs Array
-
-- Array: All elements have the same type.
+Instead of defining a type for each object, we can create a reusable type alias:
 
 ```ts
-let numbers: number[] = [1, 2, 3];
+type User = {
+  name: string;
+  age: number;
+  isAdmin?: boolean; // Optional property
+};
 ```
 
-- Tuple: Elements can have different types, and the order matters.
+## Call Signature
+
+Defines the structure of a function, including its name, parameters, and return type:
+
+```ts
+type Greet = (name: string) => string;
+```
+
+## Enums
+
+Used for defining a set of named constants:
+
+```ts
+enum Status {
+  Pending,
+  Shipped,
+  Delivered,
+}
+
+let orderStatus: Status = Status.Shipped;
+```
+
+### When to Use Enums
+
+- When you have a fixed set of related constants (e.g., days of the week, status codes).
+- To improve code readability by using meaningful names instead of magic numbers/strings.
+- When autocomplete and type safety are required.
+
+## Tuples
+
+A tuple is a fixed-size collection of elements where each element can have a different type:
 
 ```ts
 let person: [string, number] = ['Alice', 30];
 ```
 
-#### Syntax
+### Tuple vs Array
+
+- **Array**: All elements have the same type.
 
 ```ts
-let tupleName: [type1, type2, type3, ...] = [value1, value2, value3, ...];
+let numbers: number[] = [1, 2, 3];
 ```
 
-#### Key Features of Tuples
-
-1. Fixed Length
-
-- Tuples have a fixed number of elements. Adding or removing elements will cause a TypeScript error.
-
-```ts
-let point: [number, number] = [10, 20];
-point.push(30); // Error: Tuple has a fixed length
-```
-
-2. Type Order Matters
-
-- The order of types in a tuple is strict. Swapping values will cause an error.
+- **Tuple**: Elements can have different types, and order matters.
 
 ```ts
 let data: [string, number] = ['Alice', 30];
-data = [30, 'Alice']; // Error: Type 'number' is not assignable to type 'string'
 ```
 
-3. Optional Elements
+### Key Features of Tuples
 
-- You can make some elements optional using `?`.
+1. **Fixed Length**
 
-```ts
-let optionalTuple: [string, number?] = ['Alice'];
-```
+   ```ts
+   let point: [number, number] = [10, 20];
+   point.push(30); // Error: Tuple has a fixed length
+   ```
 
-- optionalTuple[0] is "Alice".
+2. **Type Order Matters**
 
-- optionalTuple[1] is undefined (optional)
+   ```ts
+   let data: [string, number] = ['Alice', 30];
+   data = [30, 'Alice']; // Error
+   ```
 
-4. Rest Elements
+3. **Optional Elements**
 
-- You can use the rest operator (`...`) to allow additional elements of a specific type.
+   ```ts
+   let optionalTuple: [string, number?] = ['Alice'];
+   ```
 
-```ts
-let rgb: [number, number, number, ...number[]] = [255, 0, 0, 128, 64];
-```
+4. **Rest Elements**
 
-- The first 3 elements are fixed (255, 0, 0)
-- The rest are optional numbers (128, 64)
+   ```ts
+   let rgb: [number, number, number, ...number[]] = [255, 0, 0, 128, 64];
+   ```
 
-#### When to Use Tuples
+### When to Use Tuples
 
-- Fixed-Size Data: When you know exactly how many elements you need and their types.
-  - Example: Coordinates ([x, y]), RGB colors ([r, g, b]).
-- Returning Multiple Values: When a function needs to return more than one value.
-- Strict Typing: When you want to enforce the types and order of elements.
-
-#### When NOT to Use Tuples
-
-- Dynamic Data: If the number of elements or their types can change, use an array or object instead.
-
-- Complex Data: For deeply nested or complex structures, prefer objects or classes.
+- Fixed-size data (e.g., coordinates `[x, y]`, RGB colors `[r, g, b]`).
+- Returning multiple values from a function.
+- Enforcing strict type and order constraints.
 
 ### Example: Tuple vs Object
 
-#### Tuple
+**Tuple:**
 
 ```ts
 let user: [string, number] = ['Alice', 30];
@@ -187,7 +179,7 @@ console.log(user[0]); // "Alice"
 console.log(user[1]); // 30
 ```
 
-#### Object
+**Object:**
 
 ```ts
 let user = { name: 'Alice', age: 30 };
@@ -195,10 +187,28 @@ console.log(user.name); // "Alice"
 console.log(user.age); // 30
 ```
 
-### Key Takeaways
+## Union Types (`|`)
 
-- Tuples are fixed-size arrays with strictly typed elements.
+A union type allows a variable to hold multiple types:
 
-- Use tuples when you need to enforce the order and type of elements.
+```ts
+let variable: string | number;
+```
 
-- Avoid tuples for dynamic or complex data (use objects or arrays instead).
+### When to Use Union Types
+
+- When a value can be one of several types.
+- Example: A function that accepts both string and number inputs.
+
+## Intersection Types (`&`)
+
+An intersection type combines multiple types into one:
+
+```ts
+type Employee = { id: number };
+type User = { name: string };
+
+let person: Employee & User = { id: 1, name: 'Alice' };
+```
+
+
