@@ -336,14 +336,15 @@ interface InterfaceName {
 
 ### Interfaces vs Types
 
-You might wonder: What’s the difference between interface and type? Here’s a quick comparison:
+What’s the difference between interface and type? Here’s a quick comparison:
 
-| Feature                | Interface                             | Type                                                 |
-| ---------------------- | ------------------------------------- | ---------------------------------------------------- | -------------------------- |
-| **Extensibility**      | Can be extended using `extends`       | Cannot be extended (but can use `&`)                 |
-| **Union/Intersection** | Cannot represent unions/intersections | Can represent unions (`                              | `) and intersections (`&`) |
-| **Merging**            | Supports declaration merging          | Does not support merging                             |
-| **Use Case**           | Best for defining object shapes       | Best for complex types (e.g., unions, intersections) |
+| Feature            | Interface                              | Type                                          |
+|--------------------|--------------------------------------|-----------------------------------------------|
+| Extensibility     | Can be extended using `extends`      | Cannot be extended (but can use `&`)         |
+| Union/Intersection | Cannot represent unions/intersections | Can represent unions (`|`) and intersections (`&`) |
+| Merging           | Supports declaration merging         | Does not support merging                     |
+| Use Case          | Best for defining object shapes      | Best for complex types (e.g., unions, intersections) |
+
 
 ### When to Use Interfaces
 
