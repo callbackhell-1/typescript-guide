@@ -121,7 +121,7 @@ To avoid unnecessary JavaScript output, prefer `const enum` when possible:
 const enum Status {
   Pending,
   Shipped,
-  Delivered
+  Delivered,
 }
 ```
 
@@ -201,11 +201,11 @@ console.log(user.age); // 30
 
 ### Tuple Behavior in TypeScript vs JavaScript
 
-| Action               | TypeScript Compile-Time | JavaScript Runtime |
-|----------------------|-----------------------|---------------------|
-| `push()`            | ✅ Allowed (no error)  | ✅ Works            |
-| Access `[2]`        | ❌ Error               | ✅ Works            |
-| Declare `[number, number]` | ✅ Fixed-length type | ❌ Dynamic array |
+| Action                     | TypeScript Compile-Time | JavaScript Runtime |
+| -------------------------- | ----------------------- | ------------------ |
+| `push()`                   | ✅ Allowed (no error)   | ✅ Works           |
+| Access `[2]`               | ❌ Error                | ✅ Works           |
+| Declare `[number, number]` | ✅ Fixed-length type    | ❌ Dynamic array   |
 
 ## Union Types (`|`)
 
@@ -237,8 +237,76 @@ Intersection types **merge properties**, meaning all properties from both types 
 
 ```ts
 // Valid
-let person: Employee & User = { id: 1, name: "Alice" };
+let person: Employee & User = { id: 1, name: 'Alice' };
 
 // Error: Property 'name' is missing
 let employee: Employee & User = { id: 1 }; // ❌ TypeScript error
 ```
+
+## Generics
+
+Generics allow us to create reusable components or functions that can work with multiple data types.
+
+```ts
+function identity<T>(arg: T): T {
+  return arg;
+}
+
+identity<string>('Hello'); // T is string
+console.log(identity<number>(55)); // T is number
+```
+
+### 1. Type Inference
+
+TypeScript can often infer the type for `T` automatically:
+
+```ts
+let output = identity('Hello'); // T is inferred as string
+```
+
+### 2. Constraints
+
+You can restrict the types that `T` can be using the `extends` keyword:
+
+```ts
+function logLength<T extends { length: number }>(arg: T): void {
+  console.log(arg.length);
+}
+
+logLength('Hello'); // Works (string has a length property)
+logLength([1, 2, 3]); // Works (array has a length property)
+logLength(42); // Error: number doesn't have a length property
+```
+
+### 3. Default Types
+
+You can provide a default type for `T`:
+
+```ts
+function createArray<T = string>(length: number, value: T): T[] {
+  return Array(length).fill(value);
+}
+
+let arr1 = createArray(3, 'Hello'); // T is string
+let arr2 = createArray(3, 42); // T is number
+```
+
+### 4. Multiple Type Parameters
+
+You can use multiple generics in the same definition:
+
+```ts
+function merge<T, U>(obj1: T, obj2: U): T & U {
+  return { ...obj1, ...obj2 };
+}
+
+let result = merge({ name: 'Alice' }, { age: 30 });
+// result is { name: "Alice", age: 30 }
+```
+
+### When to Use Generics
+
+- **Reusable Functions**: When you want a function to work with multiple types.
+- **Data Structures**: When creating classes like Box, Queue, or Stack.
+- **API Wrappers**: When fetching data with different response types.
+- **Utility Libraries**: When building libraries like Lodash or Ramda.
