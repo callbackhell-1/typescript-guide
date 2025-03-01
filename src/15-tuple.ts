@@ -15,12 +15,12 @@ let order: [string, number, boolean] = ['Pizza', 12.99, true];
  */
 
 // Example 3 :
-function fetchUser(): [string, number, boolean] {
+function fetchUser1(): [string, number, boolean] {
   // Simulate API call
   return ['Bob', 25, true];
 }
 
-const [userName, userAge, isActive] = fetchUser();
+const [userName, userAge, isActive] = fetchUser1();
 console.log(`${userName} is ${userAge} years old and active: ${isActive}`);
 // Output: "Bob is 25 years old and active: true"
 

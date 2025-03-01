@@ -310,3 +310,43 @@ let result = merge({ name: 'Alice' }, { age: 30 });
 - **Data Structures**: When creating classes like Box, Queue, or Stack.
 - **API Wrappers**: When fetching data with different response types.
 - **Utility Libraries**: When building libraries like Lodash or Ramda.
+
+## Interface
+
+### What is an Interface?
+
+An interface is a way to define a contract for the structure of an object. It describes what properties and methods an object should have, along with their types. Interfaces are purely a TypeScript feature—they don’t exist in JavaScript and are removed during compilation.
+
+### Why Use Interfaces?
+
+- **Type Safety**: Ensures objects have the correct structure.
+- **Code Readability**: Makes it clear what properties and methods an object should have.
+- **Reusability**: Define a contract once and reuse it across your codebase.
+- **Tooling Support**: Get autocomplete and type-checking in your editor.
+
+### Syntax
+
+```ts
+interface InterfaceName {
+  property1: type;
+  property2: type;
+  method1(): returnType;
+}
+```
+
+### Interfaces vs Types
+
+You might wonder: What’s the difference between interface and type? Here’s a quick comparison:
+
+| Feature                | Interface                             | Type                                                 |
+| ---------------------- | ------------------------------------- | ---------------------------------------------------- | -------------------------- |
+| **Extensibility**      | Can be extended using `extends`       | Cannot be extended (but can use `&`)                 |
+| **Union/Intersection** | Cannot represent unions/intersections | Can represent unions (`                              | `) and intersections (`&`) |
+| **Merging**            | Supports declaration merging          | Does not support merging                             |
+| **Use Case**           | Best for defining object shapes       | Best for complex types (e.g., unions, intersections) |
+
+### When to Use Interfaces
+
+- **Defining Object Shapes**: Use interfaces for objects, classes, and function signatures.
+- **API Contracts**: Define the structure of API requests/responses.
+- **Reusable Contracts**: Share interfaces across your codebase.
